@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+// ClientReceiver class. Receives messages from the server.
+
 public class ClientReceiver {
 	
 //	TODO: Set up port and server address.

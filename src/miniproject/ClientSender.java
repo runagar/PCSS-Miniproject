@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+// ClientSender class. Sends messages to the server.
+
 public class ClientSender {
 
 //	TODO: Set up server PORT and address.
