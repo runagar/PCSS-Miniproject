@@ -31,6 +31,7 @@ public class Node {
 		return node;
 	}
 	
+//	Use to compare words when sorting for occurrences
 	public boolean hasMoreOccurrences(Node word){
 		if(word.count > this.count)
 			return false;
