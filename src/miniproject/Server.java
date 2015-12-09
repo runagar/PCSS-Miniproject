@@ -6,7 +6,6 @@ import java.util.*;
 
 // General server code.
 
-
 public class Server {
 	
 //	TODO: Set up Port and ServerSocket
@@ -21,6 +20,13 @@ try{
 		System.out.println("\nCannot connected to the server on the specific port!");
 		System.exit(1);
 	}
+do{
+	Socket system = serverserver.accept();
+	System.out.println("\nYou are connected to the specific port!");
+	ClientHandlerIn getmyinfo = new ClientHandlerIn(system);
+	getmyinfo.start();
+	
+}while(true);
 	
 	
 //		TODO: Try/catch: Connect serverSocket to port.
