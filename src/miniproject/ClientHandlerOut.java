@@ -23,18 +23,36 @@ public class ClientHandlerOut extends Thread {
 		}
 	}
 	
-	public void run(String nextString){
+	public void run(String string){
 		
-		for(int i = 0; i < nextString.length(); i++){
-			if(nextString.charAt(i) = (" "))
+		String word = "";
+		
+		for(int i = 0; i < string.length(); i++){
+			if(string.charAt(i) == (' ')){
+				if(!word.equals("")){
+					Node node = new Node(word);
+					word = "";
+					for(int j = 0; j < list.size(); j++){
+						if(list.get(j).Equals(node)){
+							break;
+						}
+						else if(j == list.size()-1){
+							list.add(node);
+						}
+					}
+				}
 				continue;
+			}
+			else{
+				word = word + string.charAt(i);
+			}
 		}
 		
 		boolean sort = true;
 		while(sort){
 			sort = false;
 			for(int i = 0; i < list.size(); i++){
-				if(list.get(i).hasMoreOccurrences(list.get(i+1))){
+				if(list.get(i).hasMoreOccurrencesThan(list.get(i+1))){
 					Node temp = list.get(i);
 					list.set(i, list.get(i+1));
 					list.set(i+1, temp);
@@ -46,6 +64,7 @@ public class ClientHandlerOut extends Thread {
 		String outputString = list.toString();
 		
 		output.println(outputString);
+		System.out.println("\nMessage returned");
 		
 //		TODO: Compare words in the String to previous words.
 //		HINT: Save new words as Nodes in an arrayList. Compare new words to all words in the list 
@@ -54,5 +73,10 @@ public class ClientHandlerOut extends Thread {
 //		TODO: Sort the arrayList so that words with higher occurrences comes first, using any sorting algorithm you wish.
 		
 //		TODO: Send arrayList of words as String to ClientReceiver via PrintWriter.
+	}
+
+	public void start(String received) {
+		run(received);
+		
 	} 
 }

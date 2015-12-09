@@ -10,10 +10,11 @@ public class Server {
 	
 	//	TODO: Set up Port and ServerSocket
 		public static ServerSocket serverserver;
-		public static final int PORT=15333;
+		public static final int PORT = 15333;
 		
 		public static void main(String[] args) throws IOException{
 	try{	
+		System.out.println("\nOpening Server . . ." );
 		serverserver = new ServerSocket(PORT);	
 	}
 		catch(IOException ioEx){
@@ -21,11 +22,13 @@ public class Server {
 			System.exit(1);
 		}
 	do{
-		Socket system = serverserver.accept();
-		System.out.println("\nYou are connected to the specific port!");
-		ClientHandlerIn getmyinfo = new ClientHandlerIn(system);
-		getmyinfo.start();
+		System.out.println("\nServer open.");
 		
+		Socket client = serverserver.accept();
+		
+		System.out.println("\nYou are connected to the specific port!");
+		ClientHandlerIn receiver = new ClientHandlerIn(client);
+		receiver.start();
 		}while(true);
 	}
 }

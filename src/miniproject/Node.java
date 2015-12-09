@@ -18,9 +18,13 @@ public class Node {
 		this.count++;
 	}
 	
+	public String getWord(){
+		return word;
+	}
+	
 //	Equals method. Use to check if a node has already been constructed on a word.
-	public boolean Equals(String word){
-		if(this.word.equals(word))
+	public boolean Equals(Node node){
+		if(this.word.equals(node.getWord()))
 			return true;
 		return false;
 	}
@@ -32,7 +36,7 @@ public class Node {
 	}
 	
 //	Use to compare words when sorting for occurrences
-	public boolean hasMoreOccurrences(Node word){
+	public boolean hasMoreOccurrencesThan(Node word){
 		if(word.count > this.count)
 			return false;
 		return true;

@@ -4,16 +4,13 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-
 public class ClientHandlerIn extends Thread {
 	
 //  set up variables: Socket, Scanner.
 	
     public Socket client;
     private Scanner input;
+    public String received;
     
    //	constructor
     public ClientHandlerIn(Socket socket){
@@ -32,10 +29,13 @@ public class ClientHandlerIn extends Thread {
 
     //	saves nextLine from inputStream as string
     public void run(){
-        String received;
+
         do{  
         	//received is to be read by ClientHandlerOut
             received = input.nextLine();
+            System.out.println("\nMessage received");
+            ClientHandlerOut sortAndSend = new ClientHandlerOut(client);
+    		sortAndSend.start(received);
             
         } while (!received.equals("QUIT"));
         
