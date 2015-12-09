@@ -30,4 +30,10 @@ public class Node {
 		String node = this.word + " x " + this.count;
 		return node;
 	}
+	
+	public boolean hasMoreOccurrences(Node word){
+		if(word.count > this.count)
+			return false;
+		return true;
+	}
 }
