@@ -13,7 +13,7 @@ public class ClientHandlerIn extends Thread {
 //  set up variables: Socket, Scanner.
 	
     public Socket client;
-    public Scanner input;
+    private Scanner input;
     
    //	constructor
     public ClientHandlerIn(Socket socket){
@@ -21,7 +21,7 @@ public class ClientHandlerIn extends Thread {
         //	defines Socket.
     	client = socket;
         
-        //	sets up a Scanner to inputStream; looks out for input
+        //	sets up a Scanner to InputStream; looks out for input
         try{
             input = new Scanner(client.getInputStream());
         }
@@ -33,7 +33,8 @@ public class ClientHandlerIn extends Thread {
     //	saves nextLine from inputStream as string
     public void run(){
         String received;
-        do{
+        do{  
+        	//received is to be read by ClientHandlerOut
             received = input.nextLine();
             
         } while (!received.equals("QUIT"));
