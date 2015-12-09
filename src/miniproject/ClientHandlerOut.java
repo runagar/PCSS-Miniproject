@@ -8,15 +8,35 @@ import java.util.*;
 
 public class ClientHandlerOut extends Thread {
 	
-//	TODO: Initialise private variables: Socket, PrintWriter
+	Socket client;
+	PrintWriter output;
 	
 //	Constructor:
 	public ClientHandlerOut(Socket socket){
-//		TODO: Define socket.
-//		TODO: Set up printWriter to outputStream
+		client = socket;
+		try{
+			output = new PrintWriter(client.getOutputStream(), true);
+		}
+		catch(IOException ioEx){
+			ioEx.printStackTrace();
+		}
 	}
 	
-	public void run(){
+	public void run(ArrayList<Node> list){
+		
+		boolean sort = true;
+		while(sort){
+			sort = false;
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).hasMoreOccurrences(list.get(i+1))){
+					Node temp = list.get(i);
+					list.set(i, list.get(i+1));
+					list.set(i+1, temp);
+					sort = true;
+				}
+			}
+		}
+		
 //		TODO: Compare words in the String to previous words.
 //		HINT: Save new words as Nodes in an arrayList. Compare new words to all words in the list 
 //		before making nodes out of them. We don't want the same word as two separate nodes.
