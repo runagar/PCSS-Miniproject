@@ -4,37 +4,46 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-// ClientSender class. Sends messages to the server.
 
 public class ClientSender {
-
-//	TODO: Set up server PORT and address.
-	
-	public static void main(String[] args){
-		
-//		TODO: Try/catch: Connect to host.
-		sendMessages();
-	}
+	private static Scanner inputScanner;
+	private static String input;                        
+	private static Socket socket;
+	private static final int PORT = 15333;
+	private static InetAddress address;
+	private static PrintWriter printWriter;
 	
 	private static void sendMessages(){
-//		TODO: Initialise socket.
-		
-		try{
-//			TODO: Define socket.
-//			TODO: Set up scanner and printWriter. (inputStream & outputStream, respectively)
+		try{ 
+			socket = new Socket(address, PORT);
+			printWriter.println();
 			
-//			do{
-				
-//				TODO: Set string from user input. (Scanner)
-//				TODO: Send string to server. (PrintWriter)
-				
-//			}while(//creating close-connection condition.)
-			
+			do{
+				input = inputScanner.nextLine();
+				printWriter = new PrintWriter(socket.getOutputStream());
+			} while(input != "QUIT");
 		}catch(IOException ioEx){
 			ioEx.printStackTrace();
 		}
 		finally{
-//			TODO: Close connection. Use try/catch
+			try{
+				System.out.println("Closing connection...");
+				socket.close();
+			}
+			catch(IOException IOEx){
+				System.out.println("Unable to close connection!");
+				System.exit(1);
+			}
 		}
 	}
+	
+	public static void main(String[] args){
+		try{
+			address = InetAddress.getLocalHost();
+		}
+		catch(UnknownHostException unEx){
+			System.out.println("Cannot find host!");
+		}
+		sendMessages();
+	}	
 }
