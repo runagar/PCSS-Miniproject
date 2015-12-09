@@ -4,6 +4,60 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+/*import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class ClientHandler extends Thread {
+    private Socket client;
+    private Scanner input;
+    private PrintWriter output;
+    
+    // INPUT CLIENT HANDLER //
+    public ClientHandler(Socket socket){
+        client = socket;
+        try{
+            input = new Scanner(client.getInputStream());
+        }
+        catch(IOException ioEx){
+            ioEx.printStackTrace();
+        }
+    }
+    
+    // OUT
+    public ClientHandler(Socket socket){
+        client = socket;
+        try{
+            output = new PrintWriter(client.getOutputStream(),true);
+        }
+        catch(IOException ioEx){
+            ioEx.printStackTrace();
+        }
+    } 
+     
+
+    public void run(){
+        String received;
+        do{
+            received = input.nextLine();
+            output.println("ECHO: " + received);
+        } while (!received.equals("QUIT"));
+        
+        try{
+            if(client!=null){
+                System.out.println("Closing connection ...");
+                client.close();
+            }
+        }
+        catch (IOException ioEx){
+            System.out.println("Unable to disconnect!");
+        }
+    }
+    
+
+}
+*/
+
 //Class for handling the server-input. Meaning, setting up connection with "ClientSender" class, and receiving input.
 
 public class ClientHandlerIn extends Thread {
