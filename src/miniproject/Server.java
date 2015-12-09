@@ -9,8 +9,12 @@ import java.util.*;
 public class Server {
 	
 //	TODO: Set up Port and ServerSocket
+	public static ServerSocket serverserver;
+	public static final int PORT=15333;
 	
 	public static void main(String[] args) throws IOException{
+	
+	serverserver = new ServerSocket(PORT);	
 	
 //		TODO: Try/catch: Connect serverSocket to port.
 		
