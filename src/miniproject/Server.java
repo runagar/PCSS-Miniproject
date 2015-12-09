@@ -13,8 +13,14 @@ public class Server {
 	public static final int PORT=15333;
 	
 	public static void main(String[] args) throws IOException{
-	
+try{	
 	serverserver = new ServerSocket(PORT);	
+}
+	catch(IOException ioEx){
+		System.out.println("\nCannot connected to the server on the specific port!");
+		System.exit(1);
+	}
+	
 	
 //		TODO: Try/catch: Connect serverSocket to port.
 		
