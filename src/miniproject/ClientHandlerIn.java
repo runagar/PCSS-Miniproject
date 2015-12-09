@@ -24,7 +24,7 @@ public class ClientHandler extends Thread {
         }
     }
     
-    // OUT
+    // OUT CLIENT HANDLER //
     public ClientHandler(Socket socket){
         client = socket;
         try{
@@ -36,11 +36,11 @@ public class ClientHandler extends Thread {
     } 
      
 
+	// 
     public void run(){
         String received;
         do{
             received = input.nextLine();
-            output.println("ECHO: " + received);
         } while (!received.equals("QUIT"));
         
         try{
