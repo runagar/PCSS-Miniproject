@@ -10,6 +10,7 @@ public class ClientHandlerOut extends Thread {
 	
 	Socket client;
 	PrintWriter output;
+	ArrayList<Node> list;
 	
 //	Constructor:
 	public ClientHandlerOut(Socket socket){
@@ -22,7 +23,12 @@ public class ClientHandlerOut extends Thread {
 		}
 	}
 	
-	public void run(ArrayList<Node> list){
+	public void run(String nextString){
+		
+		for(int i = 0; i < nextString.length(); i++){
+			if(nextString.charAt(i) = (" "))
+				continue;
+		}
 		
 		boolean sort = true;
 		while(sort){
@@ -36,6 +42,10 @@ public class ClientHandlerOut extends Thread {
 				}
 			}
 		}
+		
+		String outputString = list.toString();
+		
+		output.println(outputString);
 		
 //		TODO: Compare words in the String to previous words.
 //		HINT: Save new words as Nodes in an arrayList. Compare new words to all words in the list 

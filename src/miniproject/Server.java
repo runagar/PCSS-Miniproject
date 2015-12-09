@@ -17,7 +17,7 @@ try{
 	serverserver = new ServerSocket(PORT);	
 }
 	catch(IOException ioEx){
-		System.out.println("\nCannot connected to the server on the specific port!");
+		System.out.println("\nUnable to set up port.");
 		System.exit(1);
 	}
 do{
@@ -25,24 +25,14 @@ do{
 	System.out.println("\nYou are connected to the specific port!");
 	ClientHandlerIn getmyinfo = new ClientHandlerIn(system);
 	getmyinfo.start();
+	
 }while(true);
+	
+	
 //		TODO: Try/catch: Connect serverSocket to port.
 		
 //		TODO: do/while(true): Wait for clients to connect, then start ClientHandlerIn thread
 	}
-	public void ClientOut(){
-		try{
-			serverserver=new ServerSocket(PORT);
-		} 
-		catch(IOException ioEx){
-			System.out.println("\nCannot connected to the server on the specific port!");
-			System.exit(1);
-		}
-		do{
-		Socket system = serverserver.accept();
-		ClientHandlerOut whatshouldmacallit = new ClientHandlerOut(system);
-		whatshouldmacallit.start();
-	}while(true);
-	
+
 //	TODO: Start ClientHandlerOut thread. Talk with whoever is programming that part, to figure out how you wanna do this.
-	}
+}
