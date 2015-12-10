@@ -23,8 +23,9 @@ public class ClientHandlerOut extends Thread {
 		}
 	}
 	
-	public void run(String string){
-		
+	public void run(){
+
+		String string = Server.receivedString;
 		String word = "";
 		
 		for(int i = 0; i < string.length(); i++){
@@ -75,8 +76,4 @@ public class ClientHandlerOut extends Thread {
 //		TODO: Send arrayList of words as String to ClientReceiver via PrintWriter.
 	}
 
-	public void start(String received) {
-		run(received);
-		
-	} 
 }

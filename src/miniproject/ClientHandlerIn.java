@@ -7,16 +7,17 @@ import java.util.*;
 public class ClientHandlerIn extends Thread {
 	
 //  set up variables: Socket, Scanner.
-	
     public Socket client;
     private Scanner input;
-    public String received;
+    static int clientNumber = 0;
+    int ID;
     
    //	constructor
     public ClientHandlerIn(Socket socket){
     	
-        //	defines Socket.
+        //	Initialise Socket.
     	client = socket;
+    	ID = clientNumber++;
         
         //	sets up a Scanner to InputStream; looks out for input
         try{
@@ -29,13 +30,11 @@ public class ClientHandlerIn extends Thread {
 
     //	saves nextLine from inputStream as string
     public void run(){
-
-        do{  
+    	String received;
+        do{
         	//received is to be read by ClientHandlerOut
             received = input.nextLine();
             System.out.println("\nMessage received");
-            ClientHandlerOut sortAndSend = new ClientHandlerOut(client);
-    		sortAndSend.start(received);
             
         } while (!received.equals("QUIT"));
         

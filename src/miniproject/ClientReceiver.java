@@ -9,7 +9,7 @@ import java.util.*;
 public class ClientReceiver {	
 //	Setting up port and server address.				
 	static InetAddress link;						//declaring InetAddress called link
-	static final int port = 15333;					//initializing port to 15333 										 
+	static final int port = 15333;					//initialising port to 15333 										 
 	
 	public static void main(String[] args){							//main method
 		//finding host and connecting
