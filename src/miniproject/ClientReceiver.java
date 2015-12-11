@@ -4,44 +4,51 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-// ClientReceiver class. Receives messages from the server. 
-
-public class ClientReceiver {	
-//	Setting up port and server address.				
-	static InetAddress link;						//declaring InetAddress called link
-	static final int port = 15333;					//initialising port to 15333 										 
+public class ClientReceiver {
 	
-	public static void main(String[] args){							//main method
-		//finding host and connecting
-		try{								
-			System.out.println("Connecting . . .");
-			link = InetAddress.getLocalHost();						//link = ...
-			System.out.println("Connected.");
+//	Initialise PORT and declare InetAddress for the host.	
+	private static InetAddress link;
+	private static final int port = 15333;
+	
+	public static void main(String[] args){
+		
+//		Find the host
+		try{									
+			link = InetAddress.getLocalHost();						
 			
-		}catch(UnknownHostException uhEx){							//if this can't then, system is caught by UnknownHostException
-			System.out.println("Host not found!");					//prints out "..." in the console. 
+		}catch(UnknownHostException uhEx){
+			System.out.println("Host not found!");
 		}
-		receiveMessages();											//calls method 'receiveMessages'
+		
+		receiveMessages();
 	}
 	
 	public static void receiveMessages(){
-		Socket socket = null;	//creating new Socket Object
 		
+//		Initialise socket and scanner.
+		Socket socket = null;
+		Scanner inputScanner = null;
+		
+//		Establish connection to host.
 		try{
-			socket = new Socket(link, port);							//initializing socket.
-			Scanner inputScanner = new Scanner(socket.getInputStream()); //Setting up Scanner to listen for anything that happens in the socket.
-			String input;			//declaring String 'input'.	
+			System.out.println("Connecting . . .");
+			socket = new Socket(link, port);
+			System.out.println("Connected.");
 			
+//			Set scanner to listen for input from the server. Declare string variable to hold this input.
+			inputScanner = new Scanner(socket.getInputStream());
+			String input;
+			
+//			Set string to be equal to the input received from server. Print the input.
 			do{
-				input = inputScanner.nextLine();					//input is set to be whatever the Scanner gets. 
-				System.out.println("\nMessage receive");
-				System.out.println(input);							//then prints the String 'input' into the console.
-				
+				input = inputScanner.nextLine();
+				System.out.println("\nMessage received:");
+				System.out.println(input);
 			}while(true);
 			
-		}catch(IOException ioEx){									//the system is caught by an IOException.
-			ioEx.printStackTrace();									//prints what happens.
-			System.exit(1);											//exits system - 1 means that the exit of the system was unintended.
+		}catch(IOException ioEx){
+			ioEx.printStackTrace();
+			System.exit(1);
 		}
 	}
 }

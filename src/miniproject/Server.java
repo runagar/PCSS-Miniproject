@@ -4,34 +4,34 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-// General server code.
-
 public class Server {
 	
-//	TODO: Set up Port and ServerSocket
-	public static ServerSocket serverserver;
-	public static final int PORT = 15333;
-	public static String receivedString= "";
-	
-	public static void main(String[] args) throws IOException{
-		int clientNum = 0;
-		ArrayList clients = new ArrayList();
+//	Initialise ServerSocket and PORT
+	private static ServerSocket serverSocket;
+    private static final int PORT = 15333;
+    
+//  Initialise an empty ArrayList which is supposed to hold all the client threads.
+    static ArrayList<ClientHandler> clients = new ArrayList<ClientHandler>();
+    
+	public static void main(String args[]) throws IOException{
 		
-		try{	
-			System.out.println("\nOpening Server . . ." );
-			serverserver = new ServerSocket(PORT);	
+//		Try to open the ServerSocket in the PORT
+		try{
+			System.out.println("\nOpening port . . .");
+			serverSocket = new ServerSocket(PORT);
+		}catch(IOException ioEx){
+			System.out.println("\nUnable to open port!");
+			System.exit(1);
 		}
-		catch(IOException ioEx){
-				System.out.println("\nUnable to set up port.");
-				System.exit(1);
-		}
+		System.out.println("\nPort Open.\n");
 		
+//		Accept client connections. Start a thread for each client. Add the client thread to the ArrayList
 		do{
-			Socket clientSocket = serverserver.accept();
-			clientNum++;
-			System.out.println("\nClient #"+ clientNum +" accepted!");
-			ClientHandlerIn client = new ClientHandlerIn(clientSocket);
-			clients.add(client);
-		} while(true);
+			Socket client = serverSocket.accept();
+            System.out.println("New client accepted.");
+            ClientHandler ch = new ClientHandler(client);
+            clients.add(ch);
+            ch.start();
+		}while(true);
 	}
 }
